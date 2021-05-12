@@ -1,0 +1,182 @@
+[
+    {
+      "_id": "6051f9872d84087414deee24",
+      "index": 0,
+      "isActive": true,
+      "age": 34,
+      "name": "Green English",
+      "gender": "male",
+      "company": "DAISU",
+      "email": "greenenglish@daisu.com",
+      "phone": "+1 (807) 436-2385",
+      "tags": [
+        "id",
+        "ea",
+        "magna",
+        "duis",
+        "velit",
+        "quis",
+        "do"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Langley Walters"
+        },
+        {
+          "id": 1,
+          "name": "Jacqueline Warren"
+        },
+        {
+          "id": 2,
+          "name": "Phoebe Huber"
+        }
+      ],
+      "greeting": "Hello, Green English! You have 9 unread messages.",
+      "favoriteFruit": "apple"
+    },
+    {
+      "_id": "6051f98754088c11d6030baf",
+      "index": 1,
+      "isActive": false,
+      "age": 39,
+      "name": "Reilly Lamb",
+      "gender": "male",
+      "company": "MIRACLIS",
+      "email": "reillylamb@miraclis.com",
+      "phone": "+1 (814) 482-2155",
+      "tags": [
+        "quis",
+        "id",
+        "laboris",
+        "sit",
+        "incididunt",
+        "esse",
+        "incididunt"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Contreras Sweeney"
+        },
+        {
+          "id": 1,
+          "name": "Queen Hines"
+        },
+        {
+          "id": 2,
+          "name": "Nieves Sweet"
+        }
+      ],
+      "greeting": "Hello, Reilly Lamb! You have 8 unread messages.",
+      "favoriteFruit": "strawberry"
+    },
+    {
+      "_id": "6051f987b49a8081886e6bf9",
+      "index": 2,
+      "isActive": true,
+      "age": 37,
+      "name": "Merritt Bonner",
+      "gender": "male",
+      "company": "EVEREST",
+      "email": "merrittbonner@everest.com",
+      "phone": "+1 (841) 516-2314",
+      "tags": [
+        "cupidatat",
+        "sit",
+        "sint",
+        "consequat",
+        "voluptate",
+        "magna",
+        "esse"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Briana Pratt"
+        },
+        {
+          "id": 1,
+          "name": "Gray Dale"
+        },
+        {
+          "id": 2,
+          "name": "Martinez Castaneda"
+        }
+      ],
+      "greeting": "Hello, Merritt Bonner! You have 5 unread messages.",
+      "favoriteFruit": "apple"
+    },
+    {
+      "_id": "6051f987637fb3bb2dcbe7a6",
+      "index": 3,
+      "isActive": false,
+      "age": 33,
+      "name": "Regina Duke",
+      "gender": "female",
+      "company": "AEORA",
+      "email": "reginaduke@aeora.com",
+      "phone": "+1 (925) 431-3365",
+      "tags": [
+        "non",
+        "eiusmod",
+        "duis",
+        "Lorem",
+        "quis",
+        "ullamco",
+        "ipsum"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Ramirez Rowe"
+        },
+        {
+          "id": 1,
+          "name": "Conley Rich"
+        },
+        {
+          "id": 2,
+          "name": "Jeannette Copeland"
+        }
+      ],
+      "greeting": "Hello, Regina Duke! You have 8 unread messages.",
+      "favoriteFruit": "strawberry"
+    },
+    {
+      "_id": "6051f987f66020b500ef4bed",
+      "index": 4,
+      "isActive": true,
+      "age": 40,
+      "name": "Tina Joyner",
+      "gender": "female",
+      "company": "MUSAPHICS",
+      "email": "tinajoyner@musaphics.com",
+      "phone": "+1 (978) 440-2031",
+      "tags": [
+        "sint",
+        "dolor",
+        "minim",
+        "quis",
+        "reprehenderit",
+        "ipsum",
+        "mollit"
+      ],
+      "friends": [
+        {
+          "id": 0,
+          "name": "Mason Monroe"
+        },
+        {
+          "id": 1,
+          "name": "Eva Mckay"
+        },
+        {
+          "id": 2,
+          "name": "Diann Dyer"
+        }
+      ],
+      "greeting": "Hello, Tina Joyner! You have 2 unread messages.",
+      "favoriteFruit": "apple"
+    }
+  ]
