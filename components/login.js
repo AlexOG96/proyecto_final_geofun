@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Col, Divider, Input, Row } from 'antd';
+import Link from 'next/link'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 class Login extends React.Component {
@@ -36,7 +37,9 @@ class Login extends React.Component {
                       <Button type='primary'>Acceder</Button>
                     </Col>
                     <Col className="gutter-row" span={9}>
-                      <Button>Registrarse</Button>
+                      <Link href={`./registro`}>
+                        <Button>Registrarse</Button>                   
+                      </Link> 
                     </Col>
                   </Row>
                 </form>

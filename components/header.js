@@ -29,7 +29,7 @@ class Header extends React.Component {
             <div>
                 <PageHeader
                     className="site-page-header"
-                    title={<span style={{color:'#9099A2'}}>{this.props.titulo}</span>}
+                    title={<span style={{color:'#9099A2'}}>Geofun</span>}
                     subTitle={<span style={{color:'#9099A2'}}>Diviértete explorando</span>}
                     style={{backgroundColor: '#001529', color:'white'}}
                 >
