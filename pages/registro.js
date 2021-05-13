@@ -219,7 +219,7 @@ const layout = {
 
                     <Form.Item {...tailLayout}>
                       <Button type="primary" htmlType="submit" style={{ marginRight: 10 }}>
-                        <Link href={`./login`}>
+                        <Link href={`./iniciosesion`}>
                           Completar registro                    
                         </Link> 
                       </Button>
@@ -227,6 +227,7 @@ const layout = {
                         Vaciar
                       </Button>
                     </Form.Item>
+                    {/*}
                     <Form.Item {...tailLayout}>
                       <Select id="seleccionCliente" value={this.state.valor} style={{ width: 148, marginRight: 10 }} onChange={ (e) => this.handleChange(e) }>
                           <Option value="Green English">Green English</Option>
@@ -239,6 +240,7 @@ const layout = {
                         Rellenar
                       </Button>
                     </Form.Item>
+                      */}
                 </Form>
               </Row>
             </div>

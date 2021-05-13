@@ -21,8 +21,10 @@ class Mapa extends React.Component {
     return (
         
       <div>
-        <Header titulo="mapa"/>
-        <Map/>
+        <Header/>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <Map/>
+        </div>
       </div>
     );
   }
