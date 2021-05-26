@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from '../components/header'
 import Login from '../components/login'
-import { Button, Checkbox, Col, Divider, Input, Row } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { notification } from 'antd';
 
 class InicioSesion extends React.Component {

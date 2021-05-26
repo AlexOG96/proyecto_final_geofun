@@ -11,7 +11,13 @@ class Index extends React.Component {
 
   render() {
     return (
+      
       <div>
+        <head>
+        <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlHJEzjw5cJBiw6-6R-0s2pd55sf_0W08&libraries=places&callback=initMap">
+        </script>
+        </head>
         <Header/>
         <Result
           icon={<SmileOutlined />}
