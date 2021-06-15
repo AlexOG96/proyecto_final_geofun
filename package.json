@@ -19,5 +19,8 @@
     "react-dom": "17.0.2",
     "react-google-streetview": "0.0.9",
     "react-streetview": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-top-level-await": "^7.14.5"
   }
 }

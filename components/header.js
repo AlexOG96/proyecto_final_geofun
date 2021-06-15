@@ -51,12 +51,12 @@ class Header extends React.Component {
                             </Link>
                         </Menu.Item>
                             <Menu.Item key="setting:1" icon={<GlobalOutlined />}>
-                                <Link href={`./mapa`}>
+                                <Link href={`./pruebarandommap`}>
                                     Mapa                     
                                 </Link> 
                             </Menu.Item>
                             <Menu.Item key="setting:3" icon={<GlobalOutlined />}>
-                                <Link href={`./juego`}>
+                                <Link href={`./iniciojuego`}>
                                     Juego                     
                                 </Link> 
                             </Menu.Item>

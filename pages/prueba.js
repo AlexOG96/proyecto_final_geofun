@@ -2,20 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from '../components/header'
 import Game from '../components/game'
+import Streetview from 'react-streetview';
 import dynamic from 'next/dynamic';
 import { Button } from 'antd';
 //<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
 
-class Juego extends React.Component {
+class Prueba extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          estadoJuego: false
         };
     }
 
-    
+    handleGame() {
+      
+      this.setState({
+          estadoJuego: true
+      })
+  }
 
   
 
@@ -24,11 +29,15 @@ class Juego extends React.Component {
     return (
         
       <div>
+        <Header/>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
             <Game/>
-         
+            <div>
+            </div>
+          </div>
       </div>
     );
   }
 }
 
-export default Juego;
+export default Prueba;
