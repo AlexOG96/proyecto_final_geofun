@@ -1,5 +1,5 @@
 import React from 'react'
-import useRouter from 'next/router'
+//import useRouter from 'next/router'
 import Boton from '../components/botonprueba'
 import Header from '../components/header'
 import { Card, Col, Divider, Row, Select, Switch } from 'antd'

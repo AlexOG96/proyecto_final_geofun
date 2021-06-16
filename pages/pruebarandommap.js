@@ -1,7 +1,7 @@
 import React from 'react';
-import mapboxgl from 'mapbox-gl';
+//import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
-import ReactStreetview from 'react-streetview';
+//import ReactStreetview from 'react-streetview';
 
 //var streetViewService = new google.maps.StreetViewService();
 var radius = 10;

@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from '../components/header'
 import Vistasv from '../components/vistasv'
 import Vistamapa from '../components/vistamapa'
-import dynamic from 'next/dynamic';
 import { Button, InputNumber, Switch, Select } from 'antd';
-import Link from 'next/link'
 import datosSv from './streetviewsjerez.json'
 //<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
 
