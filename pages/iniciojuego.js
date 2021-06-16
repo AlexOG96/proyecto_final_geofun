@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from '../components/header'
-import Vistasv from '../components/vistasv'
+//import Vistasv from '../components/vistasv'
 import Vistamapa from '../components/vistamapa'
 import { Button, InputNumber, Switch, Select } from 'antd';
 import datosSv from './streetviewsjerez.json'
@@ -108,7 +108,8 @@ class Juego extends React.Component {
           </div>
           :
           <div>  
-          <Vistasv opcionespanorama={streetViewPanoramaOptions}/>
+         { //<Vistasv opcionespanorama={streetViewPanoramaOptions}/>
+           }
           <div>
             <Vistamapa lat={36.6990083} lng={-6.1426853} pulsar={() => this.handlePrueba} leyendaMapa={this.state.leyendaMapa} 
             longitudRandom={this.state.lngRandom} latitudRandom={this.state.latRandom}
