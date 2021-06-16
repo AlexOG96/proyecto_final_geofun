@@ -14,10 +14,8 @@
     "geolib": "^3.3.1",
     "mapbox-gl": "^2.2.0",
     "next": "^10.2.2",
-    "random-streetview": "^1.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-google-streetview": "0.0.9",
     "react-streetview": "^1.1.1"
   },
   "devDependencies": {
