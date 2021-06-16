@@ -7,8 +7,17 @@ class Index extends React.Component {
 
   constructor(props) {
       super(props);
+      this.state = {
+        funciona: false
+      };
+    
   }
 
+  handleFunciona() {
+      this.setState({
+        funciona: true
+    })
+  }
   render() {
     return (
       
@@ -26,6 +35,8 @@ class Index extends React.Component {
           icon={<SmileOutlined />}
           title="Bienvenido a Geofun"
         />
+        <button onClick={() => this.handleFunciona()}>FUNCIONA</button>
+        <div style={{display: this.state.funciona ? 'inline-block' : 'none'}}>heyyyyyyyy</div>
       </div>
     );
   }
