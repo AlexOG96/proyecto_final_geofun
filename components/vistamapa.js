@@ -4,12 +4,15 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { Button, Modal } from 'antd';
 import getDistance from 'geolib/es/getDistance';
 import Vistamapafinal from '../components/mapafinal'
+import Vistasv from '../components/vistasv'
+import { FlagOutlined } from '@ant-design/icons';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZmVucmlyOTYiLCJhIjoiY2tuZzRjZ25iMjdjczJwbGN5aml4MmEwYyJ9.bxWvaok_5Z_ql5Z5tTnKag';
 var marcador = '';
 var marcadorFinal = '';
 var coordenadaMarcadaLat = '';
 var coordenadaMarcadaLng = '';
+
 
 class Vistamapa extends React.Component {
     constructor(props) {
@@ -26,8 +29,8 @@ class Vistamapa extends React.Component {
             prediccionRealizada: false,
             resultado: 'Sin realizar predicción',
             modalVisible: false,
-            altura: 300,
-            anchura: 400,
+            altura: 280,
+            anchura: 420,
             primerClick: true,
             longitudTomada: this.props.longitudRandom,
             latitudTomada: this.props.latitudRandom,
@@ -35,7 +38,10 @@ class Vistamapa extends React.Component {
             tiempo: this.props.tiempoHijo,
             minutos: this.props.minutosHijo,
             segundos: 0,
-            temporizadorOn: this.props.temporizadorOnHijo
+            temporizadorOn: this.props.temporizadorOnHijo,
+            streetViewPanoramaOptions: this.props.panorama,
+            mostrarSv: true,
+            limiteUsosInicio: 0
             };
             
            this.contenedor1 = React.createRef();
@@ -111,18 +117,49 @@ class Vistamapa extends React.Component {
         }, 1000);
         
       } 
+
+      volverInicio() { 
+        if (this.state.mostrarSv) {
+          this.setState({
+            mostrarSv: false,
+            limiteUsosInicio: this.state.limiteUsosInicio+1
+          })
+        }
+        else {
+          this.setState({
+            mostrarSv: true,
+            limiteUsosInicio: this.state.limiteUsosInicio+1
+          })
+        }
+      }
       
     render() {
         return(
             <div>
-            <div  style={{marginTop: 20, height: this.state.altura, width: this.state.anchura, border: 'solid', borderColor: '#1890ff', borderWidth: 10, borderRadius: 10,
-                zIndex: 100, position: 'fixed'}} 
-                  ref={this.contenedor1} className="map-container"
-                  onClick={() => this.handleDisabled()}
-                  />
-
-                <Button disabled={this.state.primerClick} style={{position: 'fixed', zIndex: 100}} onClick={() => this.calculoFinal()}>Realizar predicción</Button>
-
+              
+            <div style={{ position:'fixed', zIndex: 100, width: this.state.anchura}}>
+              <div  style={{marginTop: 20, height: this.state.altura, width: this.state.anchura, borderRadius: 10, marginLeft: 20}} 
+                    ref={this.contenedor1} className="map-container"
+                    onClick={() => this.handleDisabled()}/>
+              <div style={{display: 'flex', justifyContent: 'center', marginTop: 5}}>
+                {this.state.primerClick ?
+                  <Button type='primary' shape='round' disabled>Confirmar selección</Button>
+                :
+                  <Button type='primary' shape='round' onClick={() => this.calculoFinal()}>Confirmar selección</Button>
+                }
+                {this.state.limiteUsosInicio > 13 ?
+                  <Button type='primary' shape='circle' disabled><FlagOutlined /></Button>
+                  :
+                  <Button type='primary' shape='circle' onClick={() => this.volverInicio()}><FlagOutlined /></Button>
+                }
+              </div>
+            </div>
+            {this.state.mostrarSv &&
+                <Vistasv opcionespanorama={this.state.streetViewPanoramaOptions}/> 
+              }
+              {this.state.mostrarSv === false &&
+                <Vistasv opcionespanorama={this.state.streetViewPanoramaOptions}/> 
+              }
                 <h2 style={{float: 'right', display: this.state.temporizadorOn === false && 'none'}}>
                   Tiempo restante: {this.state.minutos < 10 && '0'}{this.state.minutos}:{this.state.segundos < 10 && '0'}{this.state.segundos}
                 </h2>
@@ -134,7 +171,7 @@ class Vistamapa extends React.Component {
 
                     <h2>{this.state.prediccionRealizada ? 'Te has aproximado '+this.state.resultado : 'Sin realizar predicción'}</h2>
                     <a href={`./iniciojuego`}>
-                        <Button type='primary'>Volver a jugar</Button>                   
+                        <Button type='primary' shape='round'>Volver a jugar</Button>                   
                     </a> 
                 </Modal>
                 </div>
