@@ -171,9 +171,6 @@ class Vistamapa extends React.Component {
                 {this.state.mostrarSv === false &&
                   <Vistasv opcionespanorama={this.state.streetViewPanoramaOptions}/> 
                 }
-                  <h2 style={{float: 'right', display: this.state.temporizadorOn === false && 'none'}}>
-                    Tiempo restante: {this.state.minutos < 10 && '0'}{this.state.minutos}:{this.state.segundos < 10 && '0'}{this.state.segundos}
-                  </h2>
 
                   <Modal visible={this.state.modalVisible} bodyStyle={{height: 'auto', width: 500, borderRadius: 8}} closable={false} cancelButtonProps={{ style: { display: 'none' } }}
                       okButtonProps={{ style: { display: 'none' } }}>

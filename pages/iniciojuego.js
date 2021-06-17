@@ -2,7 +2,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 import Header from '../components/header'
 import Vistamapa from '../components/vistamapa'
-import { Button, Col, Divider, InputNumber, Row, Switch, Select } from 'antd';
+import { Button, Divider, InputNumber, Switch, Select } from 'antd';
 import datosSv from './streetviewsjerez.json'
 import Footer from '../components/footer';
 
@@ -36,7 +36,7 @@ class Juego extends React.Component {
     }
 
   handleJuego() {
-    var rand = Math.floor(Math.random() * 47);
+    var rand = Math.floor(Math.random() * 72);
     
     streetViewPanoramaOptions.position = {lat: datosSv[rand].lat , lng: datosSv[rand].lng};
     this.setState({
@@ -51,9 +51,6 @@ class Juego extends React.Component {
     this.setState({
         leyendaMapa: value
     })
-  }
-
-  handleDificultad(value) {
   }
 
   handleMovimiento() {
@@ -111,14 +108,6 @@ class Juego extends React.Component {
                     {this.state.temporizadorElegido && <InputNumber style={{marginLeft: 10}} keyboard={false} min={1} max={15} 
                     defaultValue={this.state.tiempoElegido} onChange={(e) => this.handleTiempo(e)}/>}
                   </div>
-                  {/*}
-                  Dificultad <Select id="seleccionLeyenda" value={this.state.valor} style={{ width: 150 }}>
-                                  <Option value="ckpwtwxaq3g8a17logxd95ay8">Fácil</Option>
-                                  <Option value="ckpwv4ix086aj18pses2c2nmp">Normal</Option>
-                                  <Option value="ckpwv9n5u0clo17qq77jthyuz">Difícil</Option>
-                                  <Option value="ckpwv9n5u0clo17qq77jthyuz">Extremo</Option>
-                  </Select>
-                  */}
             </div>
             <Footer conBottom={true}/>
           </div>
