@@ -1,9 +1,10 @@
 import React from 'react'
 import useRouter from 'next/router'
-import { Menu, PageHeader, Typography } from 'antd';
+import { Image, Menu, PageHeader, Typography } from 'antd';
 import Link from 'next/link'
-import { EditOutlined, GlobalOutlined ,TeamOutlined ,UserOutlined } from '@ant-design/icons';
+import { EditOutlined, GlobalOutlined ,TeamOutlined ,UserOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
+
 
 const { SubMenu } = Menu;
 
@@ -29,11 +30,9 @@ class Header extends React.Component {
             <div>
                 <PageHeader
                     className="site-page-header"
-                    title={<Link href={`./`}><a style={{color:'#9099A2'}}>Geofun</a></Link>}
-                    subTitle={<span style={{color:'#9099A2'}}>Diviértete explorando</span>}
+                    title={<Link href={`./`}><Image preview={false} width={300} alt='geoexplore' src={'https://i.ibb.co/Fm3vDsQ/logo.png'}/></Link>}
                     style={{backgroundColor: '#001529', color:'white'}}
                 >
-
                     <Menu onClick={this.handleClick}  mode="horizontal" theme="dark">
                         <Menu.Item key="mail" icon={<UserOutlined />}>
                             <Link href={`./iniciosesion`}>
@@ -55,7 +54,7 @@ class Header extends React.Component {
                                     Mapa                     
                                 </Link> 
                             </Menu.Item>
-                            <Menu.Item key="setting:3" icon={<GlobalOutlined />}>
+                            <Menu.Item key="setting:3" icon={<EnvironmentOutlined />}>
                                 <Link href={`./iniciojuego`}>
                                     Juego                     
                                 </Link> 

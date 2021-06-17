@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import Header from '../components/header'
-//import Vistasv from '../components/vistasv'
+import Vistasv from '../components/vistasv'
 import Vistamapa from '../components/vistamapa'
-import { Button, InputNumber, Switch, Select } from 'antd';
+import { Button, Col, Divider, InputNumber, Row, Switch, Select } from 'antd';
 import datosSv from './streetviewsjerez.json'
-//<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+import Footer from '../components/footer';
 
 var streetViewPanoramaOptions = {
   position: {lat: 36.6929106, lng: -6.1111165},
@@ -28,18 +28,14 @@ class Juego extends React.Component {
         super(props);
         this.state = {
           estadoJuego: false,
-          leyendaMapa: 'ckpwv9n5u0clo17qq77jthyuz',
+          leyendaMapa: 'ckpwtwxaq3g8a17logxd95ay8',
           lngRandom: '',
           latRandom: '',
           tiempoElegido: 5,
           temporizadorElegido: false
         };
     }
-    /*
-    <Link href={`./juego`}>
-                <Button type='primary'>Iniciar juego</Button>                   
-            </Link>
-      */
+
   handleJuego() {
     var rand = Math.floor(Math.random() * 47);
     
@@ -87,29 +83,49 @@ class Juego extends React.Component {
           {this.state.estadoJuego === false ?
           <div>
             <Header/>
-            <div style={{/*display: 'flex', justifyContent: 'center', marginTop: 200*/}}>
-                 Movimiento permitido <Switch onChange={() => this.handleMovimiento()} defaultChecked/>
-                 Leyenda mapa <Select id="seleccionLeyenda" value={this.state.valor} style={{ width: 150 }} onChange={(e) => this.handleLeyendaMapa(e)}>
-                                  <Option value="ckpwtwxaq3g8a17logxd95ay8">Por defecto</Option>
-                                  <Option value="ckpwv4ix086aj18pses2c2nmp">Sin nombre de calles</Option>
-                                  <Option value="ckpwv9n5u0clo17qq77jthyuz">Sin nada</Option>
-                  </Select>
-                 Temporizador <Switch onChange={() => this.handleInputTiempo()}/>
-                  {this.state.temporizadorElegido && <InputNumber keyboard={false} min={1} max={15} defaultValue={this.state.tiempoElegido} onChange={(e) => this.handleTiempo(e)}/>}
-                  {this.state.temporizadorElegido && ' minutos'}
+            <h1 style={{fontSize: 40, textAlign: 'center', marginTop: 30}}>Explora Jerez</h1>
+            <div style={{border: 'solid', borderColor: '#1890ff', borderWidth: 10, borderRadius: 10, width: '40%', 
+            marginLeft: '30%', height: 400, marginTop: 10, marginBottom: 40, padding: 20 }}>
+              <div style={{display: 'flex', justifyContent: 'center', marginTop: 10, marginBottom: 10}}>
+                <Button type='primary' shape='round' size='large' onClick={() => this.handleJuego()}>Iniciar juego</Button> 
+              </div>
+              <Divider/>
+              <h1 style={{textAlign: 'center', marginBottom: 30}}>Personalizar configuración</h1>
+                  <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <span style={{fontSize: 18, marginRight: 10}}>Movimiento permitido</span> 
+                    <Switch style={{marginRight: 10, marginTop: 5}} onChange={() => this.handleMovimiento()} defaultChecked/>
+                  </div>
+                  <div style={{display: 'flex', justifyContent: 'center', marginTop: 20}}>
+                    <span style={{fontSize: 18, marginRight: 10, marginLeft: 10}}>Leyenda mapa</span>  
+                    <Select id="seleccionLeyenda" value={this.state.valor} style={{ width: 200 }} onChange={(e) => this.handleLeyendaMapa(e)} 
+                      defaultValue="ckpwtwxaq3g8a17logxd95ay8">
+                            <Option value="ckpwtwxaq3g8a17logxd95ay8">Por defecto</Option>
+                            <Option value="ckpwv4ix086aj18pses2c2nmp">Sin nombre de calles</Option>
+                            <Option value="ckpwv9n5u0clo17qq77jthyuz">Sin nada</Option>
+                        </Select>
+                  </div>
+                  <div style={{display: 'flex', justifyContent: 'center', marginTop: 20}}>
+                    <span style={{fontSize: 18, marginRight: 10}}>Temporizador (minutos)</span> 
+                    <Switch style={{marginRight: 10, marginTop: 5}} onChange={() => this.handleInputTiempo()}/>
+                    </div>
+                    <div style={{display: 'flex', justifyContent: 'center', marginTop: 10}}>
+                    {this.state.temporizadorElegido && <InputNumber style={{marginLeft: 10}} keyboard={false} min={1} max={15} 
+                    defaultValue={this.state.tiempoElegido} onChange={(e) => this.handleTiempo(e)}/>}
+                  </div>
+                  {/*}
                   Dificultad <Select id="seleccionLeyenda" value={this.state.valor} style={{ width: 150 }}>
                                   <Option value="ckpwtwxaq3g8a17logxd95ay8">Fácil</Option>
                                   <Option value="ckpwv4ix086aj18pses2c2nmp">Normal</Option>
                                   <Option value="ckpwv9n5u0clo17qq77jthyuz">Difícil</Option>
                                   <Option value="ckpwv9n5u0clo17qq77jthyuz">Extremo</Option>
                   </Select>
-                  <Button type='primary' onClick={() => this.handleJuego()}>Iniciar juego</Button> 
+                  */}
             </div>
+            <Footer conBottom={true}/>
           </div>
           :
           <div>  
-         { //<Vistasv opcionespanorama={streetViewPanoramaOptions}/>
-           }
+          <Vistasv opcionespanorama={streetViewPanoramaOptions}/>
           <div>
             <Vistamapa lat={36.6990083} lng={-6.1426853} pulsar={() => this.handlePrueba} leyendaMapa={this.state.leyendaMapa} 
             longitudRandom={this.state.lngRandom} latitudRandom={this.state.latRandom}

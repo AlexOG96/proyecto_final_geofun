@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { Button, Modal } from 'antd';
 import getDistance from 'geolib/es/getDistance';
+import Vistamapafinal from '../components/mapafinal'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZmVucmlyOTYiLCJhIjoiY2tuZzRjZ25iMjdjczJwbGN5aml4MmEwYyJ9.bxWvaok_5Z_ql5Z5tTnKag';
 var marcador = '';
@@ -38,7 +39,6 @@ class Vistamapa extends React.Component {
             };
             
            this.contenedor1 = React.createRef();
-           this.contenedor2 = React.createRef();
     }
 
     componentDidMount() {
@@ -79,19 +79,6 @@ class Vistamapa extends React.Component {
 
       calculoFinal() {
         clearInterval(this.interval);
-        const mapResultado = new mapboxgl.Map({
-          container: this.contenedor2.current,
-          style: 'mapbox://styles/fenrir96/'+ this.state.leyendaMapa,
-          center: [coordenadaMarcadaLng, coordenadaMarcadaLat],
-          zoom: 14
-        });
-
-        mapResultado.addControl(new mapboxgl.NavigationControl());
-        
-        marcadorFinal= new mapboxgl.Marker()
-            .setLngLat([this.state.longitudTomada, this.state.latitudTomada])
-            .addTo(mapResultado);
-
         let distanciaFinal = getDistance(
           { latitude: coordenadaMarcadaLat, longitude: coordenadaMarcadaLng},
           { latitude: this.state.latitudTomada, longitude: this.state.longitudTomada})
@@ -140,16 +127,16 @@ class Vistamapa extends React.Component {
                   Tiempo restante: {this.state.minutos < 10 && '0'}{this.state.minutos}:{this.state.segundos < 10 && '0'}{this.state.segundos}
                 </h2>
 
-                <Modal visible={this.state.modalVisible} bodyStyle={{height: 300}} closable='false' cancelButtonProps={{ style: { display: 'none' } }}
+                <Modal visible={this.state.modalVisible} bodyStyle={{height: 500, width: 500}} closable='false' cancelButtonProps={{ style: { display: 'none' } }}
                     okButtonProps={{ style: { display: 'none' } }}>
+                      <Vistamapafinal latReal={this.state.latitudTomada} lngReal={this.state.longitudTomada} 
+                      latPrediccion={coordenadaMarcadaLat} lngPrediccion={coordenadaMarcadaLng}/>
+
                     <h2>{this.state.prediccionRealizada ? 'Te has aproximado '+this.state.resultado : 'Sin realizar predicción'}</h2>
                     <a href={`./iniciojuego`}>
                         <Button type='primary'>Volver a jugar</Button>                   
                     </a> 
                 </Modal>
-                <div  style={{marginTop: 20, height: this.state.altura, width: this.state.anchura}} 
-                          ref={this.contenedor2} className="map-container"
-                          />
                 </div>
                   
             
