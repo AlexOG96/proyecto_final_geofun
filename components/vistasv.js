@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactStreetview from 'react-streetview';
-import { Button } from 'antd';
 
 
 class Vistasv extends React.Component {

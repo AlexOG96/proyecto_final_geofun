@@ -1,7 +1,6 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';
 import Header from '../components/header'
-import Vistasv from '../components/vistasv'
 import Vistamapa from '../components/vistamapa'
 import { Button, Col, Divider, InputNumber, Row, Switch, Select } from 'antd';
 import datosSv from './streetviewsjerez.json'

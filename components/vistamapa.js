@@ -9,7 +9,6 @@ import { FlagOutlined } from '@ant-design/icons';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZmVucmlyOTYiLCJhIjoiY2tuZzRjZ25iMjdjczJwbGN5aml4MmEwYyJ9.bxWvaok_5Z_ql5Z5tTnKag';
 var marcador = '';
-var marcadorFinal = '';
 var coordenadaMarcadaLat = '';
 var coordenadaMarcadaLng = '';
 var interval = '';

@@ -1,8 +1,7 @@
 import React from 'react'
-import useRouter from 'next/router'
-import { Image, Menu, PageHeader, Typography } from 'antd';
+import { Image, Menu, PageHeader } from 'antd';
 import Link from 'next/link'
-import { EditOutlined, GlobalOutlined ,TeamOutlined ,UserOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import {HomeOutlined ,EnvironmentOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
 
@@ -12,20 +11,13 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: 'mail',
           };
-        
       }
 
-      handleClick = e => {
-        console.log('click ', e);
-        this.setState({ current: e.key });
-      };
       
 
 
     render() {
-        const { current } = this.state;
         return(
             <div>
                 <PageHeader
@@ -33,32 +25,22 @@ class Header extends React.Component {
                     title={<Link href={`./`}><Image preview={false} width={300} alt='geoexplore' src={'https://i.ibb.co/Fm3vDsQ/logo.png'}/></Link>}
                     style={{backgroundColor: '#001529', color:'white'}}
                 >
-                    <Menu onClick={this.handleClick}  mode="horizontal" theme="dark">
-                        <Menu.Item key="mail" icon={<UserOutlined />}>
-                            <Link href={`./iniciosesion`}>
-                                Login                      
+                    <Menu mode="horizontal" theme="dark">
+                        <Menu.Item key="inicio" icon={<HomeOutlined />}>
+                            <Link href={`./`}>
+                                Inicio                      
                             </Link> 
                         </Menu.Item>
-                        <Menu.Item key="setting:2" icon={<EditOutlined />}>
-                                <Link href={`./registro`}>
-                                    Registrarse                      
-                                </Link> 
-                            </Menu.Item>
-                        <Menu.Item key="app" icon={<TeamOutlined />}>
-                            <Link href={`./usuarios`}>
-                                Usuarios                     
-                            </Link>
-                        </Menu.Item>
-                            <Menu.Item key="setting:1" icon={<GlobalOutlined />}>
-                                <Link href={`./pruebarandommap`}>
-                                    Mapa                     
-                                </Link> 
-                            </Menu.Item>
-                            <Menu.Item key="setting:3" icon={<EnvironmentOutlined />}>
+                        <Menu.Item key="juego" icon={<EnvironmentOutlined />}>
                                 <Link href={`./iniciojuego`}>
-                                    Juego                     
+                                    Juego                      
                                 </Link> 
                             </Menu.Item>
+                            <SubMenu key="informacion" icon={<InfoCircleOutlined />} title="Información">
+                                <Menu.Item key="privacidad"><Link href={`./privacidad`}>Política de privacidad</Link></Menu.Item>
+                                <Menu.Item key="condiciones"><Link href={`./terminos`}>Términos y condiciones de uso</Link></Menu.Item>
+                                <Menu.Item key="proteccion"><Link href={`./proteccion`}>Protección de datos</Link></Menu.Item>
+                            </SubMenu>   
                     </Menu>
                 </PageHeader>
             </div>

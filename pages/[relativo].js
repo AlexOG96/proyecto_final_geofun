@@ -17,9 +17,9 @@ class Error extends React.Component {
                 status="error"
                 title="La página no existe"
                 extra={
-                <Link href={`./iniciosesion`}>
+                <Link href={`./`}>
                     <Button type="primary" key="console">
-                        Volver a login
+                        Volver a inicio
                     </Button>
                 </Link>
                 }

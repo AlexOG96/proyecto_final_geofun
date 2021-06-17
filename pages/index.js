@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/header'
-import { Result, Button } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import Footer from '../components/footer';
 import Link from 'next/link'
 
@@ -25,12 +24,6 @@ class Index extends React.Component {
       
       <div style={{height: alturaVentana}}>
         <head>
-        <meta name="google-site-verification" content="ahXrxK6Glgt4H-L8WEsxZxyHD6AX6blnMHpBbB8XUwk" />
-        {/*
-          <script async
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlHJEzjw5cJBiw6-6R-0s2pd55sf_0W08&libraries=places&callback=initMap">
-          </script>
-        */} 
         </head>
         <Header/>
         <div style={{fontSize: 18, width: '50%', marginLeft: '25%', marginBottom: 40, textAlign: 'center', marginTop: 20}}>
