@@ -13,7 +13,8 @@ class Vistamapafinal extends React.Component {
            latPrediccion: this.props.latPrediccion,
            lngPrediccion: this.props.lngPrediccion,
            latReal: this.props.latReal,
-           lngReal: this.props.lngReal
+           lngReal: this.props.lngReal,
+           prediccionRealizada: this.props.prediccionRealizada
             };
            this.contenedor1 = React.createRef();
     }
@@ -34,41 +35,42 @@ class Vistamapafinal extends React.Component {
         marcadorReal= new mapboxgl.Marker()
             .setLngLat(coordenadasReales)
             .addTo(map)
-            
-        marcadorPrediccion= new mapboxgl.Marker()
-            .setLngLat(coordenadasPrediccion)
-            .addTo(map)
-            .setPopup(popup);
+        if (this.state.prediccionRealizada) {
+            marcadorPrediccion= new mapboxgl.Marker()
+                .setLngLat(coordenadasPrediccion)
+                .addTo(map)
+                .setPopup(popup);
 
-        map.on('load', function () {
-            map.addSource('route', {
-                'type': 'geojson',
-                'data': {
-                    'type': 'Feature',
-                    'properties': {},
-                    'geometry': {
-                        'type': 'LineString',
-                        'coordinates': [
-                            coordenadasReales,
-                            coordenadasPrediccion
-                        ]
+            map.on('load', function () {
+                map.addSource('route', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'properties': {},
+                        'geometry': {
+                            'type': 'LineString',
+                            'coordinates': [
+                                coordenadasReales,
+                                coordenadasPrediccion
+                            ]
+                        }
                     }
-                }
+                    });
+                    map.addLayer({
+                        'id': 'route',
+                        'type': 'line',
+                        'source': 'route',
+                        'layout': {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    'paint': {
+                    'line-color': '#888',
+                    'line-width': 4
+                    }
                 });
-                map.addLayer({
-                    'id': 'route',
-                    'type': 'line',
-                    'source': 'route',
-                    'layout': {
-                    'line-join': 'round',
-                    'line-cap': 'round'
-                },
-                'paint': {
-                'line-color': '#888',
-                'line-width': 4
-                }
             });
-        });
+        }
     }
       
     render() {

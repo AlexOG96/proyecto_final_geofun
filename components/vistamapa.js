@@ -1,7 +1,7 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { Button, Modal } from 'antd';
+import { Button, Modal, notification } from 'antd';
 import getDistance from 'geolib/es/getDistance';
 import Vistamapafinal from '../components/mapafinal'
 import Vistasv from '../components/vistasv'
@@ -12,7 +12,7 @@ var marcador = '';
 var marcadorFinal = '';
 var coordenadaMarcadaLat = '';
 var coordenadaMarcadaLng = '';
-
+var interval = '';
 
 class Vistamapa extends React.Component {
     constructor(props) {
@@ -76,6 +76,12 @@ class Vistamapa extends React.Component {
         }
       }
 
+      openNotification() {
+        notification['warning']({
+          message: '¡Te queda un solo uso de volver al inicio!'
+        });
+      };
+
       handleDisabled() {
         this.setState({
             primerClick: false,
@@ -84,7 +90,7 @@ class Vistamapa extends React.Component {
       }
 
       calculoFinal() {
-        clearInterval(this.interval);
+        clearInterval(interval);
         let distanciaFinal = getDistance(
           { latitude: coordenadaMarcadaLat, longitude: coordenadaMarcadaLng},
           { latitude: this.state.latitudTomada, longitude: this.state.longitudTomada})
@@ -95,7 +101,7 @@ class Vistamapa extends React.Component {
       }
 
       temporizador() {
-        const interval = setInterval(() => {
+         interval = setInterval(() => {
           this.setState({
             tiempo: this.state.tiempo-1
           }) 
@@ -131,49 +137,56 @@ class Vistamapa extends React.Component {
             limiteUsosInicio: this.state.limiteUsosInicio+1
           })
         }
+        if (this.state.limiteUsosInicio === 12) {
+          this.openNotification();
+        }
       }
       
     render() {
         return(
-            <div>
-              
-            <div style={{ position:'fixed', zIndex: 100, width: this.state.anchura}}>
-              <div  style={{marginTop: 20, height: this.state.altura, width: this.state.anchura, borderRadius: 10, marginLeft: 20}} 
-                    ref={this.contenedor1} className="map-container"
-                    onClick={() => this.handleDisabled()}/>
-              <div style={{display: 'flex', justifyContent: 'center', marginTop: 5}}>
-                {this.state.primerClick ?
-                  <Button type='primary' shape='round' disabled>Confirmar selección</Button>
-                :
-                  <Button type='primary' shape='round' onClick={() => this.calculoFinal()}>Confirmar selección</Button>
-                }
-                {this.state.limiteUsosInicio > 13 ?
-                  <Button type='primary' shape='circle' disabled><FlagOutlined /></Button>
+            <div>  
+              <div style={{ position:'fixed', zIndex: 100, width: this.state.anchura, marginTop: 20}}>
+                <div style={{backgroundColor: 'white', width: '20%', fontSize: 20, textAlign: 'center', 
+                  marginLeft: '45%', borderRadius: 10, backgroundColor: '#008CFF', color: 'white', display: this.state.temporizadorOn === false && 'none'}}>
+                    {this.state.minutos < 10 && '0'}{this.state.minutos}:{this.state.segundos < 10 && '0'}{this.state.segundos}
+                </div>
+                <div  style={{marginTop: 10, height: this.state.altura, width: this.state.anchura, borderRadius: 10, marginLeft: 20}} 
+                      ref={this.contenedor1} className="map-container"
+                      onClick={() => this.handleDisabled()}/>
+                <div style={{display: 'flex', justifyContent: 'center', marginTop: 10}}>
+                  {this.state.primerClick ?
+                    <Button style={{marginRight: 5}} type='primary' shape='round' disabled>Confirmar selección</Button>
                   :
-                  <Button type='primary' shape='circle' onClick={() => this.volverInicio()}><FlagOutlined /></Button>
-                }
+                    <Button style={{marginRight: 5}} type='primary' shape='round' onClick={() => this.calculoFinal()}>Confirmar selección</Button>
+                  }
+                  {this.state.limiteUsosInicio > 13 ?
+                    <Button style={{marginLeft: 5}} type='primary' shape='circle' disabled><FlagOutlined /></Button>
+                    :
+                    <Button style={{marginLeft: 5}} type='primary' shape='circle' onClick={() => this.volverInicio()}><FlagOutlined /></Button>
+                  }
+                </div>
               </div>
-            </div>
-            {this.state.mostrarSv &&
-                <Vistasv opcionespanorama={this.state.streetViewPanoramaOptions}/> 
-              }
-              {this.state.mostrarSv === false &&
-                <Vistasv opcionespanorama={this.state.streetViewPanoramaOptions}/> 
-              }
-                <h2 style={{float: 'right', display: this.state.temporizadorOn === false && 'none'}}>
-                  Tiempo restante: {this.state.minutos < 10 && '0'}{this.state.minutos}:{this.state.segundos < 10 && '0'}{this.state.segundos}
-                </h2>
+              {this.state.mostrarSv &&
+                  <Vistasv opcionespanorama={this.state.streetViewPanoramaOptions}/> 
+                }
+                {this.state.mostrarSv === false &&
+                  <Vistasv opcionespanorama={this.state.streetViewPanoramaOptions}/> 
+                }
+                  <h2 style={{float: 'right', display: this.state.temporizadorOn === false && 'none'}}>
+                    Tiempo restante: {this.state.minutos < 10 && '0'}{this.state.minutos}:{this.state.segundos < 10 && '0'}{this.state.segundos}
+                  </h2>
 
-                <Modal visible={this.state.modalVisible} bodyStyle={{height: 500, width: 500}} closable='false' cancelButtonProps={{ style: { display: 'none' } }}
-                    okButtonProps={{ style: { display: 'none' } }}>
-                      <Vistamapafinal latReal={this.state.latitudTomada} lngReal={this.state.longitudTomada} 
-                      latPrediccion={coordenadaMarcadaLat} lngPrediccion={coordenadaMarcadaLng}/>
-
-                    <h2>{this.state.prediccionRealizada ? 'Te has aproximado '+this.state.resultado : 'Sin realizar predicción'}</h2>
-                    <a href={`./iniciojuego`}>
-                        <Button type='primary' shape='round'>Volver a jugar</Button>                   
-                    </a> 
-                </Modal>
+                  <Modal visible={this.state.modalVisible} bodyStyle={{height: 'auto', width: 500, borderRadius: 8}} closable={false} cancelButtonProps={{ style: { display: 'none' } }}
+                      okButtonProps={{ style: { display: 'none' } }}>
+                        <h2 style={{textAlign: 'center'}}>{this.state.prediccionRealizada ? 'Te has aproximado '+this.state.resultado : 'No realizaste la predicción'}</h2>
+                        <Vistamapafinal latReal={this.state.latitudTomada} lngReal={this.state.longitudTomada} 
+                        latPrediccion={coordenadaMarcadaLat} lngPrediccion={coordenadaMarcadaLng} prediccionRealizada={this.state.prediccionRealizada}/>
+                      <div style={{marginTop: 15, display: 'flex', justifyContent: 'center'}}>
+                        <a href={`./iniciojuego`}>
+                            <Button type='primary' shape='round'>Volver a jugar</Button>                   
+                        </a>
+                      </div> 
+                  </Modal>
                 </div>
                   
             
